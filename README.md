@@ -20,7 +20,8 @@ This app uses Node.js as a server and works with MySQL for storing data. You nee
 ```json
 // server/src/config/config.json
 
-// specify your credentials here
+// you need to create a database manually before using an app!
+// tables will be created automatically
 "server": {
     "port": 8080
   }, 
