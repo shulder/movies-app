@@ -1,5 +1,3 @@
-# movies-app
-
 ## Getting Started
 
 This app uses Node.js as a server and works with MySQL as a data storage. You need to have [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) and [Node.js](https://nodejs.org/uk/) installed on your system to run the application locally. 
