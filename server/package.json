@@ -1,0 +1,20 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "nodemon --watch src/ --delay 3 src/index.js"
+  },
+  "author": "shulder",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.16.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
