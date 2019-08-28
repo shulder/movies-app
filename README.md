@@ -13,7 +13,7 @@ This app uses Node.js as a server and works with MySQL as a data storage. You ne
 
 ## Database Schema
 
-![alt text](https://imgur.com/NUPKQbX)
+![](server/dbSchema.png)
  
  
 ## Installation
