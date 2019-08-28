@@ -60,9 +60,9 @@ const http = axios.create({
     - multer: allows to parse multipart/form-data sent via POST, useful for file uploading/importing
     - sequelize: powerful Node.js ORM
 - Client
-    - react-router: routing in browser
+    - react-router: browser routing
     - grommet + grommet-icons: lightweight React component library and corresponding SVG icons library
-    - axios: for HTTP requests, more reliable and easier in use than fetch API
+    - axios: HTTP requests, more reliable and easier in use than fetch API
     
 ### Structure:
 
