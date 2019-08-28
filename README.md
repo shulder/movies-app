@@ -4,7 +4,7 @@
 
 This app uses Node.js as a server and works with MySQL for storing data. You need to have [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) and [Node.js](https://nodejs.org/uk/) installed on your system to run the application locally. 
 
-## Installation:
+## Installation
 ```
  git clone https://github.com/shulder/movies-app.git
  cd movies-app
@@ -37,7 +37,7 @@ This app uses Node.js as a server and works with MySQL for storing data. You nee
 
 // you can also change axios base URL if needed
 const http = axios.create({ 
-  baseURL: 'http://localhost:8080', 
+  "baseURL": "http://localhost:8080", 
 });
 ```
 
