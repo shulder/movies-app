@@ -59,8 +59,6 @@ const http = axios.create({
  npm start
 ```
 
-### ServerAPI
-
 ## Request
 
 `GET /movies` or `GET /movies?page=1&limit=6`
