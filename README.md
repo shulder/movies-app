@@ -1,17 +1,68 @@
 # movies-app
 
+## Getting Started
+
+This app uses Node.js as a server and works with MySQL for storing data. You need to have [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) and [Node.js](https://nodejs.org/uk/) installed on your system to run the application locally. 
+
+## Installation:
+```
+ git clone https://github.com/shulder/movies-app.git
+ cd movies-app
+ cd server
+ npm install
+ # Open a new tab
+ cd client
+ npm install
+```
+
+## Configuring 
+
+```json
+// server/src/config/config.json
+
+// specify your credentials here
+"server": {
+    "port": 8080
+  }, 
+  "database": {
+    "username": "YOUR_USERNAME",
+    "password": "YOUR_PASSWORD",
+    "database": "YOUR_DB_NAME",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "logging": false
+  }
+  
+// client/src/http.js
+
+// you can also change axios base URL if needed
+const http = axios.create({ 
+  baseURL: 'http://localhost:8080', 
+});
+```
+
+## Launching:
+```
+ cd movies-app
+ cd server
+ npm start
+ # Open a new tab
+ cd client
+ npm start
+```
+
 ### Packages used:
-- Server (Node v10.15.3)
-    - Express (easier API creation)
-    - Cors (cross-origin requests during local development)
-    - Morgan (logging requests to server console)
-    - Nodemon (server hot-reloading)
-    - jsonschema (for validating JSON sent via HTTP POST)
+- Server 
+    - Express: easier API creation
+    - Cors: cross-origin requests during local development
+    - Morgan: logging requests to server console
+    - Nodemon: server hot-reloading
+    - multer: allows to parse multipart/form-data sent via POST, useful for file uploading/importing
+    - sequelize: powerful Node.js ORM
 - Client
-    - Vue.js (v2.6.10), Vue Router (minimal Vue-cli generated project)
-    - Vue-Bootstrap (responsiveness out of the box)
-    - Vue-bytesize-icons (fancy SVG icons library)
-    - axios (HTTP requests)
+    - react-router: routing in browser
+    - grommet + grommet-icons: lightweight React component library and corresponding SVG icons library
+    - axios: for HTTP requests, more reliable and easier in use than fetch API
     
 ### Structure:
 
@@ -41,15 +92,3 @@
           │  └─config.json                          # storage config
           ├─main.js            
       
-
-## Installation:
-```
- cd server
- npm install
- npm start # Running dev server
- # Open a new tab
- cd client
- npm install
- npm start # Running dev client
-```
-
