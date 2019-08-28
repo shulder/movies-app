@@ -9,7 +9,7 @@ This app uses Node.js as a server and works with MySQL as a data storage. You ne
 4. All operations are performed on immutable variables and data structures
 5. Concurrency is used when possible
 
-### Packages used
+## Packages used
 - Server 
     - Express: easier API creation
     - Cors: cross-origin requests during local development
