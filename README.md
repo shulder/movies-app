@@ -7,7 +7,7 @@ This app uses Node.js as a server and works with MySQL as a data storage. You ne
 2. User can search for movies among titles and featuring stars using a single query!
 3. Resulting search set can be sorted by date or title
 4. All operations are performed on immutable variables and data structures
-5. Concurrency is used when possible
+5. Concurrency is used where possible
 
 ## Packages used
 - Server 
