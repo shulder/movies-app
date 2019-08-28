@@ -4,15 +4,12 @@
 
 This app uses Node.js as a server and works with MySQL as a data storage. You need to have [MySQL](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) and [Node.js](https://nodejs.org/uk/) installed on your system to run the application locally. 
 
-## Core features
-~~~
 
 1. Pagination principle applied for data displaying
 2. User can search for movies among titles and featuring stars using a single query!
 3. Resulting search set can be sorted by date or title
 4. All operations are performed on immutable variables and data structures
 5. Concurrency is used when possible
-~~~
  
 ## Installation
 ```
