@@ -22,6 +22,7 @@ This app uses Node.js as a server and works with MySQL as a data storage. You ne
     - grommet + grommet-icons: lightweight React component library and corresponding SVG icons library
     - axios: HTTP requests, more reliable and easier in use than fetch API
 
+
 ## Database Schema
 
 ![](server/dbSchema.png)
