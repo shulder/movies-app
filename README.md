@@ -10,6 +10,11 @@ This app uses Node.js as a server and works with MySQL as a data storage. You ne
 3. Resulting search set can be sorted by date or title
 4. All operations are performed on immutable variables and data structures
 5. Concurrency is used when possible
+
+## Database Schema
+
+![alt text](https://imgur.com/NUPKQbX)
+ 
  
 ## Installation
 ```
