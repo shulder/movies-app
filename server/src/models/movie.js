@@ -16,6 +16,8 @@ module.exports = (sequelize, types) => {
     },
     formatId: types.INTEGER,
   }, {
+    charset: 'utf8',
+    collate: 'utf8_unicode_ci',
     timestamps: false,
   });
 };

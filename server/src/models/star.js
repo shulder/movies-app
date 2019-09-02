@@ -14,6 +14,8 @@ module.exports = (sequelize, types) => {
       required: true,
     },
   }, {
+    charset: 'utf8',
+    collate: 'utf8_unicode_ci',
     timestamps: false,
   });
 };
