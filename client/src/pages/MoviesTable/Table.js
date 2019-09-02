@@ -46,11 +46,15 @@ export default class Table extends React.Component {
 
   handleSortBtnClick = async (e) => {
     const prop = this.state.sortedBy === 'releaseYear' ? 'title' : 'releaseYear';
-    const sortedMovies = sortArrayByProperty(this.state.movies, prop);
-    this.setState({
-      movies: sortedMovies,
-      sortedBy: prop,
-    });
+    const { movies } = this.state;
+    // apply sorting only if there are movies to sort
+    if (movies.length) {
+      const sortedMovies = sortArrayByProperty(movies, prop);
+      this.setState({
+        movies: sortedMovies,
+        sortedBy: prop,
+      });
+    }
   };
 
   handleSubmitSearchBtnClick = async (e) => {
