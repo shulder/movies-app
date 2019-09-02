@@ -65,7 +65,7 @@ const getMovies = async (req, res) => {
     });
   } catch (err) {
     console.log('error in getMovies controller!', err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.sendStatus(500);
   }
 };
 
@@ -94,7 +94,7 @@ const getMovieById = async (req, res) => {
     res.json(movie);
   } catch (err) {
     console.log('error in getMovieById controller!', err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.sendStatus(500);
   }
 };
 
@@ -118,19 +118,15 @@ const searchMoviesByQuery = async (req, res) => {
     // returns all movies which contain user-typed query in a movie title
     // or in a featuring star's name/surname
     const [moviesInfo] = await Database.query(searchQuery);
-    if (moviesInfo.length > 0) {
-      const paginatedMoviesInfo = getPageData(moviesInfo, page, limit);
-      const totalPages = getTotalNumberOfPages(moviesInfo, limit);
-      res.status(200).json({
-        movies: paginatedMoviesInfo,
-        totalPages,
-      });
-    } else {
-      res.status(404).json({ error: 'No data found for this search input' });
-    }
+    const paginatedMoviesInfo = getPageData(moviesInfo, page, limit);
+    const totalPages = getTotalNumberOfPages(moviesInfo, limit);
+    res.status(200).json({
+      movies: paginatedMoviesInfo,
+      totalPages,
+    });
   } catch (err) {
     console.log('error in searchMovieByQuery controller!', err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.sendStatus(500);
   }
 };
 
@@ -140,40 +136,44 @@ const addMovie = async (req, res) => {
   console.log('received json from client', movieInfo);
   try {
     await insertMovieInfo(movieInfo);
-    res.status(200).json({ ok: true });
+    res.sendStatus(200);
   } catch (err) {
     console.log('error in addMovie controller!', err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.sendStatus(500);
   }
 };
 
 // POST /movies/import
 const importMoviesFromFile = async (req, res) => {
   const textFile = req.file.buffer.toString();
+  if (textFile.length === 0) {
+    res.sendStatus(500);
+  }
   try {
     const movies = parseMovieInfo(textFile);
     const insertionPromises = movies.map(movie => insertMovieInfo(movie));
     await Promise.all(insertionPromises);
-    res.status(200).json({ ok: true });
+    res.sendStatus(200);
   } catch (err) {
     console.log('error in importMoviesFromFile controller!', err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.sendStatus(500);
   }
 };
 
 // DELETE /movies/:id
 const deleteMovieById = async (req, res) => {
   const movieId = req.params.id;
+  console.log(movieId);
   try {
     await Movie.destroy({
       where: {
         id: movieId,
       },
     });
-    res.status(200).json({ ok: true });
+    res.sendStatus(200);
   } catch (err) {
     console.log('error in deleteMovieById controller!', err);
-    res.status(500).json({ error: 'Internal server error' });
+    res.sendStatus(500);
   }
 };
 

@@ -1,3 +1,4 @@
+// split data into parts and return a corresponding one
 const getPageData = (array, page, limit) => {
   if (!page || !limit) {
     return array;
@@ -6,6 +7,7 @@ const getPageData = (array, page, limit) => {
   return array.slice(offset, offset + limit);
 };
 
+// get number of pages taking a limit into account 
 const getTotalNumberOfPages = (array, limit) => {
   if (!limit) {
     return 1;

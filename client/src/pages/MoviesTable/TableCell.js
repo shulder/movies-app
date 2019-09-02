@@ -1,14 +1,14 @@
 import React from 'react';
-import { Box, RoutedButton, Text } from 'grommet';
+import { Box, Button, Text } from 'grommet';
 
-const TableCell = ({id, title, releaseYear}) => (
+const TableCell = ({id, title, releaseYear, history}) => (
   <Box
     key={id}
     basis="small"
     round="xsmall"
     overflow="hidden"
     >
-      <RoutedButton path={`/movies/${id}`} fill>
+      <Button fill onClick={e => history.push(`/movies/${id}`)}>
         <Box
           direction="row"
           justify="between"
@@ -20,7 +20,7 @@ const TableCell = ({id, title, releaseYear}) => (
             {title} ({releaseYear})
           </Text>
         </Box>
-      </RoutedButton>
+      </Button>
   </Box>
 );
 

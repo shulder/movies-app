@@ -1,13 +1,16 @@
 import React from 'react';
 import {
   Box, 
-  RoutedButton, 
+  Button, 
   Text,
 } from 'grommet';
 
-const Header = () => (
+const Header = ({history}) => (
   <Box direction="row" justify="center" align="center">
-    <RoutedButton path="/" hoverIndicator>
+    <Button
+      hoverIndicator 
+      onClick={e => history.push('/movies')} 
+    >
       <Box
         pad="small"
         direction="row"
@@ -18,7 +21,7 @@ const Header = () => (
           WebbyLab Test | Oleksandr Shateliuk 
         </Text>
       </Box>
-    </RoutedButton>
+    </Button>
   </Box>
 );
 

@@ -4,7 +4,6 @@ import {
   Heading,
   InfiniteScroll,
   Button,
-  RoutedButton, 
   TextInput,
 } from 'grommet';
 import {
@@ -15,6 +14,7 @@ import {
   Sort,
 } from 'grommet-icons';
 import React from 'react';
+import Message from '../../Message.js'
 import PageIndicator from './PageIndicator';
 import TableCell from './TableCell';
 import http from '../../http.js';
@@ -27,7 +27,6 @@ const fetchMoviesFromServer = async (page, limit, searchQuery) => {
     const { data } = await http.get(url);
     return data;
   } catch (err) {
-    console.error(err);
     return null;
   }
 };
@@ -42,6 +41,7 @@ export default class Table extends React.Component {
     totalPages: 1,
     sortedBy: 'releaseYear',
     limit: 6,
+    status: '',
   };
 
   handleSortBtnClick = async (e) => {
@@ -80,16 +80,18 @@ export default class Table extends React.Component {
   };
 
   saveMovies = (data) => {
-    if (data) {
+    if (data && data.movies.length > 0) {
       const sortedMovies = sortArrayByProperty(data.movies, this.state.sortedBy);
       this.setState({
         movies: sortedMovies,
-        totalPages: data.totalPages
+        totalPages: data.totalPages,
+        status: '',
       });
     } else {
       this.setState({
-        movies: [],
+        movies: null,
         totalPages: 1,
+        status: data ? 'No movies found' : 'Request failed, check Internet connection or try later',
       });
     }
   };
@@ -101,10 +103,12 @@ export default class Table extends React.Component {
   };
 
   render() {
+    const { history } = this.props;
     const { 
+      movies,
       searchQuery, 
-      movies, 
-      sortedBy, 
+      sortedBy,
+      status, 
       currentPage, 
       totalPages 
     } = this.state;
@@ -119,8 +123,16 @@ export default class Table extends React.Component {
             justify="between" 
             align="center"
             >
-            <RoutedButton icon={<FormAdd />} label="New" path="/movies/new" />
-            <RoutedButton icon={<FormUpload />} label="Upload" path="/movies/upload" />
+            <Button 
+              icon={<FormAdd />} 
+              label="New" 
+              onClick={e => history.push('/movies/new')}
+            />
+            <Button 
+              icon={<FormUpload />} 
+              label="Upload"
+              onClick={e => history.push('/movies/upload')} 
+            />
           </Box>
         </Box>
         <Box direction="row" justify="between" align="center">
@@ -141,21 +153,23 @@ export default class Table extends React.Component {
           />
         </Box>
         <Box height="150px" margin={{ vertical: 'medium' }}>
-          <Grid columns="small" gap="small">
-            {movies ? (
+          {movies ? (
+            <Grid columns="small" gap="small">
               <InfiniteScroll items={movies}>
                 {movie => (
                   <TableCell
+                    history={history}
                     id={movie.id}
                     title={movie.title}
                     releaseYear={movie.releaseYear}
+                    key={movie.id}
                   />
                 )}
               </InfiniteScroll>
-            ) : (
-              <Box margin="medium" pad="large" background="light-1" />
-            )}
-          </Grid>
+            </Grid>
+          ) : (
+            <Message text={status} type="error" />
+          )}
         </Box>
         <PageIndicator 
           currentPage={currentPage}

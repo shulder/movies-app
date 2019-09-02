@@ -5,11 +5,16 @@ import {
 } from 'grommet';
 import React from 'react';
 import MovieProperty from './MovieProperty';
+import Message from '../../Message.js'
 import http from '../../http.js';
 
 export default class Movie extends React.Component {
   state = {
     movieInfo: null,
+    status: {
+      text: '',
+      type: '',
+    },
   };
 
   componentDidMount = async () => {
@@ -20,18 +25,41 @@ export default class Movie extends React.Component {
         movieInfo: data,
       });
     } catch (err) {
-      console.error(err);
+      this.setState({
+        movieInfo: null,
+        status: {
+          message: 'Request failed, check Internet connection or try later',
+          type: 'error',
+        }
+      });
     }
   };
 
   handleDeleteBtnClick = async (e) => {
     const { id } = this.props.match.params;
     try {
-      // data contains "OK" or "ERROR" MovieProperty
       await http.delete(`/movies/${id}`);
-      this.props.history.push('/movies');
+      this.setState({
+        movieInfo: null,
+        status: {
+          message: 'Movie was deleted succesfully. Redirecting in a few seconds...',
+          type: 'success',
+        }
+      });
+      setTimeout(() => {
+        this.props.history.push('/movies');
+      }, 3000);
     } catch (err) {
-      console.error(err);
+      this.setState({
+        movieInfo: null,
+        status: {
+          message: 'Request failed, check Internet connection or try later. Redirecting in a few seconds...',
+          type: 'error',
+        }
+      });
+      setTimeout(() => {
+        this.props.history.push('/movies');
+      }, 3000);
     }
   };
 
@@ -70,8 +98,9 @@ export default class Movie extends React.Component {
               />
             </Box>
           </div>
-          ) : (<Box margin="medium" pad="large" background="light-1" />)
-        }
+          ) : (
+            <Message text={this.state.status.message} type={this.state.status.type} />
+          )}
       </div>
     );
   }
