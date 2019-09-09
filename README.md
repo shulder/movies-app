@@ -10,14 +10,14 @@ This app uses Node.js as a server and works with MySQL as a data storage. You ne
 5. Concurrency is used where possible
 
 ## Packages used
-- Server 
+- Server (Node.js)
     - Express: easier API creation
     - Cors: cross-origin requests during local development
     - Morgan: logging requests to server console
     - Nodemon: server hot-reloading
     - multer: allows to parse multipart/form-data sent via POST, useful for file uploading/importing
     - sequelize: powerful Node.js ORM
-- Client
+- Client (React)
     - react-router: browser routing
     - grommet + grommet-icons: lightweight React component library and corresponding SVG icons library
     - axios: HTTP requests, more reliable and easier in use than fetch API
